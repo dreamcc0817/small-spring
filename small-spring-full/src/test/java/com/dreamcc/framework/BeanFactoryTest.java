@@ -27,8 +27,8 @@ public class BeanFactoryTest {
         userService.queryUserInfo();
 
         // 4.第二次获取 bean from Singleton
-        // UserService userService_singleton = (UserService) beanFactory.getBean("userService");
-        //  userService_singleton.queryUserInfo();
+        UserService userServiceSingleton = (UserService) beanFactory.getBean("userService");
+        userServiceSingleton.queryUserInfo();
     }
 
 }

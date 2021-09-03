@@ -3,7 +3,7 @@ package com.dreamcc.framework;
 /**
  * @author cloud-cc
  * @ClassName AbstractAutowireCapableBeanFactory
- * @Description TODO
+ * @Description 创建Bean
  * @date 2021/9/3 14:35
  * @Version 1.0
  */
@@ -19,6 +19,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
+        addSingleton(beanName, bean);
         return bean;
     }
 }

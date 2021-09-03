@@ -1,9 +1,6 @@
 package com.dreamcc.framework;
 
 
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-
 /**
  * @author cloud-cc
  * @ClassName BeanFactory
@@ -13,17 +10,11 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public interface BeanFactory {
 
-
-
     /**
      * 获取Bean
      * @param beanName bean名称
      * @return bean
      */
     Object getBean(String beanName);
-
-
-    void registerBeanDefinition(String beanName,BeanDefinition bean);
-
 
 }
