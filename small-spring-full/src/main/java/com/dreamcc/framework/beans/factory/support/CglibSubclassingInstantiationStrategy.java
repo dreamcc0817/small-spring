@@ -1,5 +1,6 @@
-package com.dreamcc.framework;
+package com.dreamcc.framework.beans.factory.support;
 
+import com.dreamcc.framework.beans.factory.config.BeanDefinition;
 import net.sf.cglib.proxy.Enhancer;
 import net.sf.cglib.proxy.NoOp;
 

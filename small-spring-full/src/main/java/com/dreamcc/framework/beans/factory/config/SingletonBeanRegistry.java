@@ -1,4 +1,4 @@
-package com.dreamcc.framework;
+package com.dreamcc.framework.beans.factory.config;
 
 /**
  * @author cloud-cc

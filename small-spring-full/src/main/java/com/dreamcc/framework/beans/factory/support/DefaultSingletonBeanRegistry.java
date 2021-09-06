@@ -1,4 +1,6 @@
-package com.dreamcc.framework;
+package com.dreamcc.framework.beans.factory.support;
+
+import com.dreamcc.framework.beans.factory.config.SingletonBeanRegistry;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;

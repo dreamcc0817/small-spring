@@ -1,27 +1,35 @@
 package com.dreamcc.framework.bean;
 
+import com.dreamcc.framework.dao.UserDAO;
+
 /**
  * @author cloud-cc
  * @ClassName UserService
- * @Description TODO
+ * @Description userService
  * @date 2021/9/3 14:47
  * @Version 1.0
  */
 public class UserService {
-    private String name;
-
-    public UserService(String name) {
-        this.name = name;
-    }
+    private String uId;
+    private UserDAO userDAO;
 
     public void queryUserInfo(){
-        System.out.println("查询用户信息" + name);
+        System.out.println("查询用户信息id = " + userDAO.queryUserName(uId));
     }
 
-    @Override
-    public String toString() {
-        return "UserService{" +
-                "name='" + name + '\'' +
-                '}';
+    public String getuId() {
+        return uId;
+    }
+
+    public void setuId(String uId) {
+        this.uId = uId;
+    }
+
+    public UserDAO getUserDAO() {
+        return userDAO;
+    }
+
+    public void setUserDAO(UserDAO userDAO) {
+        this.userDAO = userDAO;
     }
 }
