@@ -23,11 +23,11 @@ public class BeanFactoryTest {
         beanFactory.registerBeanDefinition("userService", beanDefinition);
 
         // 3.第一次获取 bean
-        UserService userService = (UserService) beanFactory.getBean("userService");
-        userService.queryUserInfo();
+//        UserService userService = (UserService) beanFactory.getBean("userService");
+//        userService.queryUserInfo();
 
         // 4.第二次获取 bean from Singleton
-        UserService userServiceSingleton = (UserService) beanFactory.getBean("userService");
+        UserService userServiceSingleton = (UserService) beanFactory.getBean("userService","sea");
         userServiceSingleton.queryUserInfo();
     }
 
