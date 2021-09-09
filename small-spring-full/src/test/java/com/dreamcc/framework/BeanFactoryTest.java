@@ -10,10 +10,12 @@ import com.dreamcc.framework.beans.factory.support.DefaultListableBeanFactory;
 import com.dreamcc.framework.dao.UserDAO;
 import org.junit.Test;
 
+import java.util.Optional;
+
 /**
  * @author cloud-cc
  * @ClassName BeanFactoryTest
- * @Description TODO
+ * @Description BeanFactoryTest
  * @date 2021/9/3 11:52
  * @Version 1.0
  */
@@ -47,4 +49,10 @@ public class BeanFactoryTest {
 //        userServiceSingleton.queryUserInfo();
     }
 
+    @Test
+    public void hello(){
+        String beanName = null;
+        String resutl = Optional.ofNullable(beanName).orElse("");
+        System.out.println("resutl = " + resutl);
+    }
 }

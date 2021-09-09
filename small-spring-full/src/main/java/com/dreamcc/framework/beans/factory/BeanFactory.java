@@ -1,6 +1,8 @@
 package com.dreamcc.framework.beans.factory;
 
 
+import com.dreamcc.framework.beans.BeansException;
+
 /**
  * @author cloud-cc
  * @ClassName BeanFactory
@@ -12,10 +14,22 @@ public interface BeanFactory {
 
     /**
      * 获取Bean
+     *
      * @param beanName bean名称
      * @return bean
      */
     Object getBean(String beanName);
 
-    Object getBean(String beanName,Object... args);
+    Object getBean(String beanName, Object... args);
+
+    /**
+     * 按类型获取Bean
+     *
+     * @param beanName
+     * @param requiredType
+     * @param <T>
+     * @return
+     * @throws BeansException
+     */
+    <T> T getBean(String beanName, Class<T> requiredType) throws BeansException;
 }

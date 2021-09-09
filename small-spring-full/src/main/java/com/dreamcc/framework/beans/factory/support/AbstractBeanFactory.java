@@ -1,6 +1,7 @@
 package com.dreamcc.framework.beans.factory.support;
 
 
+import com.dreamcc.framework.beans.BeansException;
 import com.dreamcc.framework.beans.factory.BeanFactory;
 import com.dreamcc.framework.beans.factory.config.BeanDefinition;
 
@@ -23,6 +24,11 @@ public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry i
         return doGetBean(beanName, args);
     }
 
+    @Override
+    public <T> T getBean(String name, Class<T> requiredType) throws BeansException {
+        return (T) getBean(name);
+    }
+
     protected <T> T doGetBean(final String name, final Object[] args) {
         Object bean = getSingleton(name);
         if (bean != null) {
@@ -35,5 +41,5 @@ public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry i
 
     public abstract BeanDefinition getBeanDefinition(String beanName);
 
-    public abstract Object createBean(String beanName, BeanDefinition beanDefinition,Object... args);
+    public abstract Object createBean(String beanName, BeanDefinition beanDefinition,Object[] args);
 }

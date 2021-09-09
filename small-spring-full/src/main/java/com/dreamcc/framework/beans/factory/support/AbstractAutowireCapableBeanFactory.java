@@ -1,6 +1,7 @@
 package com.dreamcc.framework.beans.factory.support;
 
 import cn.hutool.core.bean.BeanUtil;
+import com.dreamcc.framework.beans.BeansException;
 import com.dreamcc.framework.beans.factory.PropertyValue;
 import com.dreamcc.framework.beans.factory.PropertyValues;
 import com.dreamcc.framework.beans.factory.config.BeanDefinition;
@@ -42,17 +43,21 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
      * @param beanDefinition class 类属性
      */
     protected void applyPropertyValues(String beanName, Object bean, BeanDefinition beanDefinition) {
-        PropertyValues propertyValues = beanDefinition.getPropertyValues();
-        for (PropertyValue propertyValue : propertyValues.getPropertyValues()) {
-            String name = propertyValue.getName();
-            Object value = propertyValue.getValue();
+        try {
+            PropertyValues propertyValues = beanDefinition.getPropertyValues();
+            for (PropertyValue propertyValue : propertyValues.getPropertyValues()) {
+                String name = propertyValue.getName();
+                Object value = propertyValue.getValue();
 
-            if(value instanceof BeanReference){
-                BeanReference beanReference = (BeanReference) value;
-                value = getBean(beanReference.getBeanName());
+                if(value instanceof BeanReference){
+                    BeanReference beanReference = (BeanReference) value;
+                    value = getBean(beanReference.getBeanName());
+                }
+
+                BeanUtil.setFieldValue(bean,name,value);
             }
-
-            BeanUtil.setFieldValue(bean,name,value);
+        } catch (Exception e) {
+            throw new BeansException("Error setting property values：" + beanName);
         }
     }
 
