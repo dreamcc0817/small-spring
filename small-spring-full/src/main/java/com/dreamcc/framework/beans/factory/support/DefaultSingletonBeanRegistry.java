@@ -19,7 +19,6 @@ public class DefaultSingletonBeanRegistry implements SingletonBeanRegistry {
 
     @Override
     public Object getSingleton(String beanName) {
-        System.out.println("获取单例beanName = " + beanName);
         return singletonObjects.get(beanName);
     }
 

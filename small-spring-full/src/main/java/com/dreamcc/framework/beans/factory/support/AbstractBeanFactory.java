@@ -2,8 +2,12 @@ package com.dreamcc.framework.beans.factory.support;
 
 
 import com.dreamcc.framework.beans.BeansException;
-import com.dreamcc.framework.beans.factory.BeanFactory;
 import com.dreamcc.framework.beans.factory.config.BeanDefinition;
+import com.dreamcc.framework.beans.factory.config.BeanPostProcessor;
+import com.dreamcc.framework.beans.factory.config.ConfigurableBeanFactory;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author cloud-cc
@@ -12,7 +16,9 @@ import com.dreamcc.framework.beans.factory.config.BeanDefinition;
  * @date 2021/9/3 14:27
  * @Version 1.0
  */
-public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry implements BeanFactory {
+public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry implements ConfigurableBeanFactory {
+
+    private final List<BeanPostProcessor> beanPostProcessors = new ArrayList<BeanPostProcessor>();
 
     @Override
     public Object getBean(String beanName) {
@@ -41,5 +47,20 @@ public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry i
 
     public abstract BeanDefinition getBeanDefinition(String beanName);
 
-    public abstract Object createBean(String beanName, BeanDefinition beanDefinition,Object[] args);
+    public abstract Object createBean(String beanName, BeanDefinition beanDefinition, Object[] args);
+
+    @Override
+    public void addBeanPostProcessor(BeanPostProcessor beanPostProcessor) {
+        this.beanPostProcessors.remove(beanPostProcessor);
+        this.beanPostProcessors.add(beanPostProcessor);
+    }
+
+    /**
+     * 在factory创建bean之前，返回一个BeanPostProcessors列表
+     *
+     * @return
+     */
+    public List<BeanPostProcessor> getBeanPostProcessors() {
+        return this.beanPostProcessors;
+    }
 }

@@ -10,4 +10,11 @@ import com.dreamcc.framework.beans.factory.HierarchicalBeanFactory;
  * @Version 1.0
  */
 public interface ConfigurableBeanFactory extends HierarchicalBeanFactory {
+
+    String SCOPE_SINGLETON = "singleton";
+
+    String SCOPE_PROTOTYPE = "prototype";
+
+    void addBeanPostProcessor(BeanPostProcessor beanPostProcessor);
+
 }

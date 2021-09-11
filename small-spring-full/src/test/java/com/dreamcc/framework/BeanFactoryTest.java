@@ -7,7 +7,7 @@ import com.dreamcc.framework.beans.factory.PropertyValues;
 import com.dreamcc.framework.beans.factory.config.BeanDefinition;
 import com.dreamcc.framework.beans.factory.config.BeanReference;
 import com.dreamcc.framework.beans.factory.support.DefaultListableBeanFactory;
-import com.dreamcc.framework.dao.UserDAO;
+import com.dreamcc.framework.bean.UserDAO;
 import org.junit.Test;
 
 import java.util.Optional;

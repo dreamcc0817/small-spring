@@ -1,4 +1,4 @@
-package com.dreamcc.framework.dao;
+package com.dreamcc.framework.bean;
 
 import java.util.HashMap;
 import java.util.Map;
