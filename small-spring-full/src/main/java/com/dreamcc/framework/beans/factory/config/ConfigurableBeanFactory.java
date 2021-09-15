@@ -9,12 +9,14 @@ import com.dreamcc.framework.beans.factory.HierarchicalBeanFactory;
  * @date 2021/9/9 08:35
  * @Version 1.0
  */
-public interface ConfigurableBeanFactory extends HierarchicalBeanFactory {
+public interface ConfigurableBeanFactory extends HierarchicalBeanFactory, SingletonBeanRegistry  {
 
     String SCOPE_SINGLETON = "singleton";
 
     String SCOPE_PROTOTYPE = "prototype";
 
     void addBeanPostProcessor(BeanPostProcessor beanPostProcessor);
+
+    void destroySingletons();
 
 }

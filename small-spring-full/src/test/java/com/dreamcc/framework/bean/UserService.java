@@ -1,5 +1,8 @@
 package com.dreamcc.framework.bean;
 
+import com.dreamcc.framework.beans.factory.DisposableBean;
+import com.dreamcc.framework.beans.factory.InitializingBean;
+
 /**
  * @author cloud-cc
  * @ClassName UserService
@@ -7,7 +10,7 @@ package com.dreamcc.framework.bean;
  * @date 2021/9/3 14:47
  * @Version 1.0
  */
-public class UserService {
+public class UserService implements InitializingBean, DisposableBean {
     private String uId;
     private String company;
     private String location;
@@ -16,6 +19,8 @@ public class UserService {
     public void queryUserInfo(){
         System.out.println("查询用户信息id = " + userDAO.queryUserName(uId)+ ","  + company + "," + location);
     }
+
+
 
     public String getuId() {
         return uId;
@@ -47,5 +52,15 @@ public class UserService {
 
     public void setUserDAO(UserDAO userDAO) {
         this.userDAO = userDAO;
+    }
+
+    @Override
+    public void destroy() throws Exception {
+        System.out.println("执行UserService。destroy");
+    }
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        System.out.println("执行UserService。afterPropertiesSet");
     }
 }
