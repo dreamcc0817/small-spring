@@ -5,6 +5,7 @@ import com.dreamcc.framework.beans.BeansException;
 import com.dreamcc.framework.beans.factory.config.BeanDefinition;
 import com.dreamcc.framework.beans.factory.config.BeanPostProcessor;
 import com.dreamcc.framework.beans.factory.config.ConfigurableBeanFactory;
+import com.dreamcc.framework.util.ClassUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +21,8 @@ public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry i
 
     private final List<BeanPostProcessor> beanPostProcessors = new ArrayList<BeanPostProcessor>();
 
+    /** ClassLoader to resolve bean class names with, if necessary */
+    private ClassLoader beanClassLoader = ClassUtils.getDefaultClassLoader();
     @Override
     public Object getBean(String beanName) {
         return doGetBean(beanName, null);
@@ -62,5 +65,9 @@ public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry i
      */
     public List<BeanPostProcessor> getBeanPostProcessors() {
         return this.beanPostProcessors;
+    }
+
+    public ClassLoader getBeanClassLoader() {
+        return this.beanClassLoader;
     }
 }

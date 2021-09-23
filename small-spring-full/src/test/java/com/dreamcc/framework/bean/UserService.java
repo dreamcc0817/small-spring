@@ -1,7 +1,12 @@
 package com.dreamcc.framework.bean;
 
-import com.dreamcc.framework.beans.factory.DisposableBean;
-import com.dreamcc.framework.beans.factory.InitializingBean;
+import com.dreamcc.framework.beans.BeansException;
+import com.dreamcc.framework.beans.factory.BeanClassLoaderAware;
+import com.dreamcc.framework.beans.factory.BeanFactory;
+import com.dreamcc.framework.beans.factory.BeanFactoryAware;
+import com.dreamcc.framework.beans.factory.BeanNameAware;
+import com.dreamcc.framework.context.ApplicationContext;
+import com.dreamcc.framework.context.ApplicationContextAware;
 
 /**
  * @author cloud-cc
@@ -10,16 +15,19 @@ import com.dreamcc.framework.beans.factory.InitializingBean;
  * @date 2021/9/3 14:47
  * @Version 1.0
  */
-public class UserService implements InitializingBean, DisposableBean {
+public class UserService implements BeanNameAware, BeanClassLoaderAware, ApplicationContextAware, BeanFactoryAware {
+
+    private ApplicationContext applicationContext;
+    private BeanFactory beanFactory;
+
     private String uId;
     private String company;
     private String location;
     private UserDAO userDAO;
 
-    public void queryUserInfo(){
-        System.out.println("查询用户信息id = " + userDAO.queryUserName(uId)+ ","  + company + "," + location);
+    public void queryUserInfo() {
+        System.out.println("查询用户信息id = " + userDAO.queryUserName(uId) + "," + company + "," + location);
     }
-
 
 
     public String getuId() {
@@ -54,13 +62,33 @@ public class UserService implements InitializingBean, DisposableBean {
         this.userDAO = userDAO;
     }
 
+
     @Override
-    public void destroy() throws Exception {
-        System.out.println("执行UserService。destroy");
+    public void setBeanClassLoader(ClassLoader classLoader) throws BeansException {
+        System.out.println("ClassLoader : " + classLoader);
     }
 
     @Override
-    public void afterPropertiesSet() throws Exception {
-        System.out.println("执行UserService。afterPropertiesSet");
+    public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
+        this.beanFactory = beanFactory;
+        System.out.println("beanFactory = " + beanFactory);
+    }
+
+    @Override
+    public void setBeanName(String name) throws BeansException {
+        System.out.println("name = " + name);
+    }
+
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        this.applicationContext = applicationContext;
+    }
+
+    public ApplicationContext getApplicationContext() {
+        return applicationContext;
+    }
+
+    public BeanFactory getBeanFactory() {
+        return beanFactory;
     }
 }

@@ -43,6 +43,7 @@ public class ApplicationContextTest {
         // 2. 获取Bean对象调用方法
         UserService userService = applicationContext.getBean("userService", UserService.class);
         userService.queryUserInfo();
-
+        System.out.println("ApplicationContextAware = " + userService.getApplicationContext());
+        System.out.println("BeanFactory = " + userService.getBeanFactory());
     }
 }
